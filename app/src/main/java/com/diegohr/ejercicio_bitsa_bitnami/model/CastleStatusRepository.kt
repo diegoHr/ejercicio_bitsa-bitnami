@@ -5,13 +5,13 @@ import kotlin.jvm.Throws
 /**
  * Created by Diego Hernando on 9/6/21.
  */
-class CastleStatusRepository {
+class CastleStatusRepository (private val castleNumWindows : Int = GameConstants.CASTLE_NUM_WINDOWS) {
 
     fun initialCastleStatus () : Array<String>{
         val sequence = generateSequence {
             WindowStatus.OPENED.status
         }
-        return sequence.take(64).toList().toTypedArray()
+        return sequence.take(castleNumWindows).toList().toTypedArray()
     }
 
 

@@ -10,7 +10,7 @@ import org.junit.Test
  */
 class CastleStatusRepositoryTest {
 
-    private val repository = CastleStatusRepository()
+    private val repository = CastleStatusRepository(64)
     private val initialCastleStatusTest = arrayOf(
         "A","A","A","A","A","A","A","A",
         "A","A","A","A","A","A","A","A",
