@@ -7,7 +7,7 @@ import kotlin.jvm.Throws
  * Created by Diego Hernando on 9/6/21.
  */
 class CastleStatusRepository @Inject constructor (private val windowUtils : WindowUtils,
-                                                  private val castleNumWindows : Int = GameConstants.CASTLE_NUM_WINDOWS) {
+                                                  internal val castleNumWindows : Int = GameConstants.CASTLE_NUM_WINDOWS) {
 
     fun initialCastleStatus () : Array<WindowStatus>{
         val sequence = generateSequence {

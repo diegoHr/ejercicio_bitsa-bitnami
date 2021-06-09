@@ -5,5 +5,4 @@ package com.diegohr.ejercicio_bitsa_bitnami.model
  */
 object GameConstants {
     const val CASTLE_NUM_WINDOWS = 64
-    const val NUM_VISITORS = CASTLE_NUM_WINDOWS
 }

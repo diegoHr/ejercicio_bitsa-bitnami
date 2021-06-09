@@ -9,7 +9,7 @@ class GamePlayService @Inject constructor(private val castleStatusRepository: Ca
 
     fun playAllGame () : Array<WindowStatus> {
         var castleStatus = castleStatusRepository.initialCastleStatus()
-        val visitors = (1..GameConstants.NUM_VISITORS)
+        val visitors = (1..castleStatusRepository.castleNumWindows)
         visitors.forEach{
             castleStatus = play(it, castleStatus)
         }
@@ -18,7 +18,7 @@ class GamePlayService @Inject constructor(private val castleStatusRepository: Ca
 
     fun play (positionVisitor : Int, castleStatus : Array<WindowStatus>) : Array<WindowStatus>{
         return when (positionVisitor){
-            GameConstants.NUM_VISITORS ->lastPlay(castleStatus)
+            castleStatusRepository.castleNumWindows ->lastPlay(castleStatus)
             1 -> firstPlay(1, castleStatus)
             2 -> firstPlay(2, castleStatus)
             else -> normalPlay(positionVisitor, castleStatus)
