@@ -10,16 +10,16 @@ import org.junit.Test
  */
 class CastleStatusRepositoryTest {
 
-    private val repository = CastleStatusRepository(64)
+    private val repository = CastleStatusRepository(WindowUtils(), 64)
     private val initialCastleStatusTest = arrayOf(
-        "A","A","A","A","A","A","A","A",
-        "A","A","A","A","A","A","A","A",
-        "A","A","A","A","A","A","A","A",
-        "A","A","A","A","A","A","A","A",
-        "A","A","A","A","A","A","A","A",
-        "A","A","A","A","A","A","A","A",
-        "A","A","A","A","A","A","A","A",
-        "A","A","A","A","A","A","A","A")
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN",
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN",
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN",
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN",
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN",
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN",
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN",
+        "OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN","OPEN").map{ WindowStatus.valueOf(it)}.toTypedArray()
 
 
     @Test
@@ -47,19 +47,50 @@ class CastleStatusRepositoryTest {
         checkOuterLimitsChangingWindowStatusOfCastleStatus(0)
     }
 
+    @Test
+    fun `check change some window status that are in castle` () {
+        val positions = listOf(1,64,20,10)
+        val modifiedCastleStatus = repository.changeListOfWindowStatusInCastleStatus(WindowOperations.CLOSE_RIGHT, positions, initialCastleStatusTest)
+        modifiedCastleStatus.forEachIndexed { index, s ->
+            val position = index + 1
+            if(s == WindowStatus.OPEN){
+               assertThat(positions.contains(position), `is`(false))
+            }else if (s == WindowStatus.LEFT_OPEN){
+                assertThat(positions.contains(position), `is`(true))
+            }else{
+                fail("Readed window state not covered ($s) at $position position")
+            }
+        }
+    }
+
+    @Test
+    fun `check change window status that someone is not in castle` () {
+        val positions = listOf(1,64,20,65)
+        try {
+            repository.changeListOfWindowStatusInCastleStatus(
+                WindowOperations.CLOSE_RIGHT,
+                positions,
+                initialCastleStatusTest
+            )
+            fail("Exception not thrown on exceeding array size")
+        }catch (th : Throwable){
+            assertThat(th is IndexOutOfBoundsException, `is`(true))
+        }
+    }
+
 
     private fun checkInternalLimitsChangingWindowStatusofCasteStatus (position: Int){
-        val modifiedCastleStatus = repository.changeWindowStatusOfCastleStatus(WindowStatus.CLOSED, position, initialCastleStatusTest)
-        assertThat(modifiedCastleStatus[position-1], `is`(WindowStatus.CLOSED.status))
+        val modifiedCastleStatus = repository.changeWindowStatusInCastleStatus(WindowOperations.CLOSE_RIGHT, position, initialCastleStatusTest)
+        assertThat(modifiedCastleStatus[position-1], `is`(WindowStatus.LEFT_OPEN))
         val modifiedCastleStatusOkTest = initialCastleStatusTest.copyOf()
-        modifiedCastleStatusOkTest[position-1] = WindowStatus.CLOSED.status
+        modifiedCastleStatusOkTest[position-1] = WindowStatus.LEFT_OPEN
         assertThat(modifiedCastleStatus, `is`(modifiedCastleStatusOkTest))
     }
 
     private fun checkOuterLimitsChangingWindowStatusOfCastleStatus (position : Int) {
         try {
-            repository.changeWindowStatusOfCastleStatus(
-                WindowStatus.CLOSED,
+            repository.changeWindowStatusInCastleStatus(
+                WindowOperations.CLOSE_RIGHT,
                 position,
                 initialCastleStatusTest
             )
