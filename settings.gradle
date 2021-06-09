@@ -1,0 +1,2 @@
+rootProject.name = "ejercicio_bitsa-bitnami"
+include ':app'
