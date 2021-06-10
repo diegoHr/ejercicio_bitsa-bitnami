@@ -1,4 +1,4 @@
-package com.diegohr.ejercicio_bitsa_bitnami
+package com.diegohr.ejercicio_bitsa_bitnovo
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
