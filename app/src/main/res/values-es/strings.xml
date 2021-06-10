@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Juego del castillo</string>
+
+    <string name="loading_text">Los visistantes están jugando al juego</string>
+    <string name="retry_action">Reintentar</string>
+    <string name="castle_status">Estado del castillo</string>
+    <string name="game_status">Estado del juego</string>
+    <string name="number_window_states">Número de ventanas en cada estado</string>
+    <string name="number_opened_windows">Número de ventanas abiertas: %1$d</string>
+    <string name="number_closed_windows">Número de ventanas cerradas: %1$d</string>
+    <string name="number_windows_opened_right">Número de ventanas abiertas por el ala derecha: %1$d</string>
+    <string name="number_windows_opened_left">Número de ventanas abiertas por el ala izquierda: %1$d</string>
+    <string name="id_winners">Los ids de los ganadores</string>
+    <string name="id_second_winners">Los ids de los segundos ganadores</string>
+
+</resources>
