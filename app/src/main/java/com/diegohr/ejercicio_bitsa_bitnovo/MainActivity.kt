@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.diegohr.ejercicio_bitsa_bitnovo.databinding.ActivityMainBinding
 import com.diegohr.ejercicio_bitsa_bitnovo.view.CastleStatusFragment
 import com.diegohr.ejercicio_bitsa_bitnovo.view.GameStatusFragment
@@ -56,12 +55,7 @@ class MainActivity : AppCompatActivity() {
             tab.setText(getStringResIdTitleTab(position))
         }.attach()
 
-        binding.contentMain.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                binding.toolbar.setTitle(getStringResIdTitleTab(position))
-            }
-        })
+        binding.toolbar.setTitle(R.string.app_name)
 
         binding.floatButtonViewRegame.setOnClickListener {
             viewModel.initGame()
@@ -91,8 +85,6 @@ class MainActivity : AppCompatActivity() {
                 else -> GameStatusFragment()
             }
         }
-
-
     }
 
 }
