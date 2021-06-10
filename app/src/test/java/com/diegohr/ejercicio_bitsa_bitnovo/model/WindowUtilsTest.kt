@@ -1,4 +1,4 @@
-package com.diegohr.ejercicio_bitsa_bitnami.model
+package com.diegohr.ejercicio_bitsa_bitnovo.model
 
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat

@@ -1,4 +1,5 @@
-package com.diegohr.ejercicio_bitsa_bitnami.model
+package com.diegohr.ejercicio_bitsa_bitnovo.model
+
 
 import javax.inject.Inject
 import kotlin.jvm.Throws
@@ -6,8 +7,12 @@ import kotlin.jvm.Throws
 /**
  * Created by Diego Hernando on 9/6/21.
  */
-class CastleStatusRepository @Inject constructor (private val windowUtils : WindowUtils,
-                                                  internal val castleNumWindows : Int = GameConstants.CASTLE_NUM_WINDOWS) {
+class CastleStatusRepository  constructor (private val windowUtils : WindowUtils,
+                                                  val castleNumWindows : Int) {
+
+    @Inject
+    constructor(windowUtils: WindowUtils) : this (windowUtils, GameConstants.CASTLE_NUM_WINDOWS)
+
 
     fun initialCastleStatus () : Array<WindowStatus>{
         val sequence = generateSequence {

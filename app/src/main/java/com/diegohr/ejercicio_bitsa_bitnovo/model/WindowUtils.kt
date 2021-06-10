@@ -1,9 +1,11 @@
-package com.diegohr.ejercicio_bitsa_bitnami.model
+package com.diegohr.ejercicio_bitsa_bitnovo.model
+
+import javax.inject.Inject
 
 /**
  * Created by Diego Hernando on 9/6/21.
  */
-class WindowUtils {
+class WindowUtils @Inject constructor(){
 
     fun executeWindowOperation (operation: WindowOperations, status: WindowStatus) : WindowStatus{
         return when(operation){

@@ -1,4 +1,4 @@
-package com.diegohr.ejercicio_bitsa_bitnami.model
+package com.diegohr.ejercicio_bitsa_bitnovo.model
 
 /**
  * Created by Diego Hernando on 9/6/21.

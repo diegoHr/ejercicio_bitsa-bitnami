@@ -1,4 +1,4 @@
-package com.diegohr.ejercicio_bitsa_bitnami.model
+package com.diegohr.ejercicio_bitsa_bitnovo.model
 
 import javax.inject.Inject
 
@@ -8,12 +8,16 @@ import javax.inject.Inject
 class GamePlayService @Inject constructor(private val castleStatusRepository: CastleStatusRepository) {
 
     fun playAllGame () : Array<WindowStatus> {
-        var castleStatus = castleStatusRepository.initialCastleStatus()
+        return playAllGame(castleStatusRepository.initialCastleStatus())
+    }
+
+    fun playAllGame (castleStatus: Array<WindowStatus>) : Array<WindowStatus> {
+        var TemporalCastleStatus = castleStatus
         val visitors = (1..castleStatusRepository.castleNumWindows)
         visitors.forEach{
-            castleStatus = play(it, castleStatus)
+            TemporalCastleStatus = play(it, TemporalCastleStatus)
         }
-        return castleStatus
+        return TemporalCastleStatus
     }
 
     fun play (positionVisitor : Int, castleStatus : Array<WindowStatus>) : Array<WindowStatus>{

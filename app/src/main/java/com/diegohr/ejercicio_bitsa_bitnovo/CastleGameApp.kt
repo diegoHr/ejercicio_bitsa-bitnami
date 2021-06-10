@@ -1,4 +1,4 @@
-package com.diegohr.ejercicio_bitsa_bitnami
+package com.diegohr.ejercicio_bitsa_bitnovo
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
